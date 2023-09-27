@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect, useContext } from "react";
+import { Fragment, useEffect, useContext } from "react";
 import Prism from 'prismjs';
 import NavigationButtons from "./NavigationButtons";
 import { Context } from './ThemeContext';
@@ -6,7 +6,7 @@ import 'prismjs/themes/prism-tomorrow.css';
 
 const Topic = ({ title, content = [] }) => {
     const { theme } = useContext(Context);
-    console.log(title);
+    
     const parseContent = (content) => {
         return content.map(item => {
             const [[tag, text]] = Object.entries(item);

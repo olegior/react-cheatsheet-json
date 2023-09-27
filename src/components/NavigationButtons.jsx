@@ -1,7 +1,18 @@
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import {data} from '../main'
+import { getData } from "../utils/getData";
 
 const NavigationButtons = ({ title }) => {
+
+    const [data, setData] = useState([]);
+
+    useEffect(() => {
+        const asyncSetData = async () => {
+            setData(await getData());
+        }
+        asyncSetData()
+    }, [])
+
     const topics = data.map(e => {
         const { title, path } = e;
         return { title, path };
@@ -16,8 +27,8 @@ const NavigationButtons = ({ title }) => {
         const next = current < topics.length - 1 ? topics[current + 1] : null;
         return (
             <>
-                {prev && <Link to={'/react-cheatsheet/topic/' + prev.path}>Предыдущая тема: {prev.title}</Link>}
-                {next && <Link to={'/react-cheatsheet/topic/' + next.path}>Следующая тема: {next.title}</Link>}
+                {prev && <Link to={'/topic/' + prev.path}>Предыдущая тема: {prev.title}</Link>}
+                {next && <Link to={'/topic/' + next.path}>Следующая тема: {next.title}</Link>}
 
             </>
         )

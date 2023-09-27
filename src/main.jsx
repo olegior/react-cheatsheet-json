@@ -4,19 +4,25 @@ import App from './App.jsx'
 import './index.css'
 
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+// import axios from 'axios';
 import { ThemeContext } from './components/ThemeContext';
 import Home from './components/Home'
 import Topic from "./components/Topic";
 import ErrorPage from './components/ErrorPage';
+import { getData } from './utils/getData.js';
 
-const fetcher = async () => {
-  const response = await fetch('https://olegior-json-server.vercel.app/cheatsheet/');
-  return await response.json()
-}
+// const fetcher = async () => {
+//   const response = await fetch('https://olegior-json-server.vercel.app/cheatsheet/');
+//   return await response.json()
+// }
 // console.log(fetcher());
 
-export const data = await fetcher();
-console.log(data);
+// export const data = [];
+// axios.get('https://olegior-json-server.vercel.app/cheatsheet/').then(response => {
+//   data.push(...response.data)
+// });
+// await fetcher();
+// console.log(data);
 // export const data = [
 //   {
 //     path: 'components', title: 'Components', content: [
@@ -441,15 +447,15 @@ console.log(data);
 //         p: `В методе getSnapshotBeforeUpdate() у вас есть доступ к props и state до обновления, а это означает, что даже после обновления вы можете проверить, какие значения были до обновления.
 
 //               Если метод getSnapshotBeforeUpdate() присутствует, вы также должны включить метод componentDidUpdate(), иначе вы получите ошибку.
-              
+
 //               Пример ниже может показаться сложным, но все, что он делает, это следующее:
-              
+
 //               Когда компонент монтируется , он отображается любимым цветом "красный".
-              
+
 //               Когда компонент смонтирован, таймер меняет состояние, и через одну секунду любимый цвет становится «желтым».
-              
+
 //               Это действие запускает фазу обновления, и поскольку у этого компонента есть метод getSnapshotBeforeUpdate(), этот метод выполняется и записывает сообщение в пустой элемент DIV1.
-              
+
 //               Затем метод componentDidUpdate() выполняется и записывает сообщение в пустой элемент DIV2:`},
 //       {
 //         c: `class Header extends React.Component {
@@ -484,11 +490,11 @@ console.log(data);
 //         p: `Метод componentDidUpdate вызывается после обновления компонента в DOM.
 
 //             Пример ниже может показаться сложным, но все, что он делает, это следующее:
-            
+
 //             Когда компонент монтируется , он отображается любимым цветом "красный".
-            
+
 //             Когда компонент смонтирован, таймер меняет состояние, и цвет становится «желтым».
-            
+
 //             Это действие запускает фазу обновления, и поскольку у этого компонента есть метод componentDidUpdate, этот метод выполняется и записывает сообщение в пустой элемент DIV:`},
 //       {
 //         c: `class Header extends React.Component {
@@ -543,7 +549,7 @@ console.log(data);
 //       );
 //   }
 //   }
-  
+
 //   class Child extends React.Component {
 //   componentWillUnmount() {
 //       alert("The component named Header is about to be unmounted.");
@@ -561,7 +567,7 @@ console.log(data);
 //       {
 //         p: `
 //               Как и события HTML DOM, React может выполнять действия на основе пользовательских событий.
-              
+
 //               React имеет те же события, что и HTML: щелчок, изменение, наведение мыши и т. д.`},
 //       {
 //         p: `События React записываются в синтаксисе camelCase,                
@@ -578,7 +584,7 @@ console.log(data);
 //   const shoot = () => {
 //       alert("Great Shot!");
 //   }
-  
+
 //   return (
 //       <button onClick={shoot}>Take the shot!</button>
 //   );
@@ -590,7 +596,7 @@ console.log(data);
 //       e.preventDefault();
 //       console.log('Отправлена форма.');
 //   }
-  
+
 //   return (
 //       <form onSubmit={handleSubmit}>
 //       <button type="submit">Отправить</button>
@@ -603,7 +609,7 @@ console.log(data);
 //   const shoot = (a) => {
 //       alert(a);
 //   }
-  
+
 //   return (
 //       <button onClick={() => shoot("Goal!")}>Take the shot!</button>
 //   );
@@ -614,7 +620,7 @@ console.log(data);
 //   const shoot = (a, b) => {
 //       alert(b.type); // event, который вызвал функцию - click
 //   }
-  
+
 //   return (
 //       <button onClick={(event) => shoot("Goal!", event)}>Take the shot!</button>
 //   );
@@ -747,7 +753,7 @@ console.log(data);
 //   // Правильно! Не нужно определять здесь ключ:
 //   return <li>{props.value}</li>;
 // }
-  
+
 // function NumberList(props) {
 //   const numbers = props.numbers;
 //   const listItems = numbers.map((number) =>
@@ -869,7 +875,7 @@ console.log(data);
 //       };
 //       this.getData = this.getData.bind(this);
 //   }
-  
+
 //   async getData() {
 //       try {
 //           const resp = await axios.get("https://api.sampleapis.com/wines/" + this.props.sort);
@@ -879,15 +885,15 @@ console.log(data);
 //           this.setState({ isGetError: true });
 //       }
 //   }
-  
+
 //   componentDidMount() {
 //       this.getData();
 //   }
-  
+
 //   componentDidUpdate(prevProps) {
 //       prevProps.sort !== this.props.sort && this.getData();
 //   }
-  
+
 //   render() {
 //       const { wines, isGetError } = this.state;
 //       const winesList = wines.map((wine) => <Card key={wine.id} {...wine} />);
@@ -1009,7 +1015,7 @@ console.log(data);
 //       {
 //         c: `function Counter() {
 //   const [count, setCount] = useState(0);
-  
+
 //   useEffect(() => {
 //       const intervalId = setInterval(() => {
 //       setCount(count + 1); // хотим увеличивать count каждую секунду
@@ -1339,12 +1345,12 @@ console.log(data);
 //       this.handleSubmit = this.handleSubmit.bind(this);
 //       this.input = React.createRef();
 //   }
-  
+
 //   handleSubmit(event) {
 //       alert('Отправленное имя: ' + this.input.current.value);
 //       event.preventDefault();
 //   }
-  
+
 //   render() {
 //       return (
 //       <form onSubmit={this.handleSubmit}>
@@ -1360,7 +1366,6 @@ console.log(data);
 
 // ]
 
-
 const router = createBrowserRouter(
   [
     {
@@ -1368,13 +1373,13 @@ const router = createBrowserRouter(
       element: <ErrorPage />,
     },
     {
-      path: '/react-cheatsheet/',
+      path: '/',
       element: <Home />,
     },
     {
-      path: '/react-cheatsheet/topic',
+      path: '/topic',
       element: <App />,
-      children: data.map(topic => {
+      children: [...await getData()].map(topic => {
         // children: [...await getData()].map(topic => {
         const { path, title, content } = topic;
         return {

@@ -6,10 +6,9 @@ import { useContext } from 'react';
 
 const Header = () => {
     const {theme,toggleTheme} = useContext(Context);
-
     return (
         <header className="header">
-            <Link to="/react-cheatsheet/"><img src={logo} className="header-logo" alt="logo" /></Link>
+            <Link to="/"><img src={logo} className="header-logo" alt="logo" /></Link>
             <button onClick={toggleTheme}><img src={toggle} alt={theme} /></button>
             <a href='https://github.com/olegior/react-cheatsheet' target='_blank' rel="noreferrer">
                 <img className='github' src="https://cdn-icons-png.flaticon.com/512/25/25231.png" alt="github" />
