@@ -1,0 +1,264 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.navigation, .topic{
+  scrollbar-width: thin;
+  scrollbar-color: var(--secondary-dark) var(--primary-dark);
+}
+
+.dark{
+  scrollbar-color: var(--secondary-dark) var(--primary-dark);
+}
+.light{
+  scrollbar-color: var(--secondary-dark) var(--primary-dark);
+}
+
+.navigation::-webkit-scrollbar, .topic::-webkit-scrollbar {
+  width: 14px;
+}
+
+.dark::-webkit-scrollbar-track {
+  background: var(--primary-dark);
+  border-radius: 5px;
+}
+
+.dark::-webkit-scrollbar-thumb{
+  background-color: var(--secondary-dark);
+  border-radius: 14px;
+  border: 3px solid var(--primary-dark);
+}
+
+.light::-webkit-scrollbar-track {
+  background: var(--primary-light);
+  border-radius: 5px;
+}
+.light::-webkit-scrollbar-thumb {
+  background-color: var(--secondary-light);
+  border-radius: 14px;
+  border: 3px solid var(--primary-light);
+}
+
+:root {
+  --primary-dark: #23272F;
+  --secondary-dark: #333A45;
+  --primary-light: #F8F9FA;
+  --secondary-light: #EBECEF;
+}
+
+@layer components {
+
+  .dark {
+    @apply bg-bgcolor text-textcolor;
+  }
+
+  .light {
+    @apply bg-bglight;
+  }
+
+  .header {
+    @apply bg-header py-4 h-[72px] px-5 sticky top-0 flex justify-between items-center text-textcolor;
+  }
+
+  .header>a{
+    @apply text-2xl;
+  }
+
+  .home>div{
+    @apply h-fs flex flex-col items-center justify-evenly;
+  }
+
+  .home>div>h1{
+    @apply text-4xl;
+  }
+  
+  .home>div>a{
+    @apply block h-16 w-64 bg-activelink rounded-3xl text-2xl text-center pt-4 font-thin text-textcolor;
+  }
+
+  .home>h1{
+    @apply text-center;
+  }
+
+  .errorPage>h1 {
+    @apply my-10 text-3xl text-center;
+  }
+
+  .errorPage {
+    @apply mx-auto text-center text-5xl flex flex-col pt-20;
+  }
+
+  .errorPage> button{
+    @apply text-2xl mt-10;
+  }
+
+  .errorPage>a {
+    @apply mt-5 text-2xl;
+  }
+
+  .navigation.light>a.active { 
+    @apply bg-bglight  rounded-3xl  text-activelink outline outline-2 outline-activelink;
+  }
+
+  .navigation.dark>a.active { 
+    @apply bg-header  rounded-3xl  text-activelink;
+  }
+
+  .navigation>a {
+    @apply block py-2 px-5 my-2 mx-2 md:m-0 md:my-1 md:py-2 md:mx-4 whitespace-nowrap;
+  }
+
+  .navigation {
+    @apply text-xl flex flex-row items-center overflow-auto border-b-2 border-header 
+    md:flex-col md:items-start md:p-5 md:pr-0 md:overflow-x-hidden md:border-0 md:max-h-screen md:min-w-min;
+  }
+  
+  .main{
+    @apply flex flex-col md:flex-row w-full md:h-fs;
+  }
+
+  .topic{
+    @apply p-5 text-xl overflow-auto;
+  }
+
+  .topic>*{
+    @apply my-5;
+  }
+
+  .topic>p{
+    @apply indent-8 leading-8 text-justify;
+  }
+
+  .topic>h3{
+    @apply text-2xl text-center font-bold my-10 md:my-16;
+  }
+
+  .topic>h1{
+    @apply text-4xl mb-10 md:mb-16 text-center font-bold;
+  }
+
+  .topic>pre.language-javascript{
+    @apply rounded-xl p-5 mb-10 md:my-10 text-sm md:text-lg;
+  }
+
+  .topic>ul{
+    @apply list-disc ml-5 md:ml-20 md:mb-10 md:-mt-3;
+  }
+
+  .footer{
+    @apply bg-header h-16 sticky bottom-0 md:static;
+  }
+
+  .navigation--buttons{
+    @apply flex flex-col md:flex-row justify-evenly md:mt-20 md:mb-10;
+  }
+
+  .navigation--buttons> a{
+    @apply border-b-2 border-textcolor my-3 py-2 px-5 block text-center;
+  }
+
+  .dark>.alert{
+    @apply border-l-4 border-warning p-4 bg-header my-10 text-justify;
+  }
+
+  .light>.alert{
+    @apply border-l-4 border-warning p-4 bg-lightwarning my-10 text-justify;
+  }
+
+  .alert>span{
+    @apply w-9 h-9 md:w-10 md:h-10 text-center inline-block text-warning text-3xl rounded-full outline outline-2 outline-warning mr-5 font-bold;
+  }
+
+}
+
+@media (hover: hover) {
+  .navigation--buttons> a:hover{
+    @apply border-startlink border-b-2 text-startlink px-2;
+  }
+  .navigation--buttons> a:hover:first-child::before{
+    content: '< ';
+    font-size: x-large;
+  }
+  .navigation--buttons> a:hover:last-child::after{
+    content: ' >';
+    font-size: x-large;
+  }
+  .navigation.dark>a:hover{
+    @apply bg-header rounded-3xl text-startlink;
+  }
+  .navigation.light>a:hover{
+    @apply bg-bglight rounded-3xl text-startlink outline outline-2 outline-startlink;
+  }
+  .home>div>a:hover{
+    @apply bg-startlink outline-2 outline;
+  }
+  .home>div>div>p>a:hover{
+    @apply border-b-2;
+  }
+}
+
+@media (orientation: landscape) and (max-width: 768px) {
+  .header{
+    position: static;
+  }
+  .navigation{
+    position: sticky;
+    top: 0;
+  }
+}
+
+@media (orientation: portrait){
+  .header{
+    position: static;
+  }
+  .navigation{
+    position: sticky;
+    top:0;
+  }
+}
+
+
+.header-logo {
+  height: 40px;
+  pointer-events: none;
+}
+
+header>a>img.github{
+  height: 40px;
+  width: 40px;
+  filter: invert(1); 
+  border-radius: '100%'; 
+}
+
+
+header>button{
+  height: 40px;
+  width: 40px;
+  filter: invert(0); 
+}
+
+.light>header>button{
+  transform: rotate(180deg);
+  filter: invert(1); 
+}
+
+@media (hover: hover){
+  header>a>img.github:hover{
+      filter: invert(0); 
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .header-logo {
+      animation: header-logo-spin infinite 5s linear;
+  }
+}
+
+@keyframes header-logo-spin {
+  from {
+      transform: rotate(0deg);
+  }
+  to {
+      transform: rotate(-360deg);
+  }
+}
