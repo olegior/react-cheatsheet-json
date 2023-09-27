@@ -1,15 +1,15 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import App from './App.jsx'
 import './index.css'
 
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+// import { createBrowserRouter, RouterProvider } from "react-router-dom";
 // import axios from 'axios';
 import { ThemeContext } from './components/ThemeContext';
 import Home from './components/Home'
-import Topic from "./components/Topic";
-import ErrorPage from './components/ErrorPage';
-import { getData } from './utils/getData.js';
+// import App from './App.jsx'
+// import Topic from "./components/Topic";
+// import ErrorPage from './components/ErrorPage';
+// import { getData } from './utils/getData.js';
 
 // const fetcher = async () => {
 //   const response = await fetch('https://olegior-json-server.vercel.app/cheatsheet/');
@@ -1366,37 +1366,37 @@ import { getData } from './utils/getData.js';
 
 // ]
 
-const router = createBrowserRouter(
-  [
-    {
-      path: '*',
-      element: <ErrorPage />,
-    },
-    {
-      path: '/',
-      element: <Home />,
-    },
-    {
-      path: '/topic',
-      element: <App />,
-      children: [...await getData()].map(topic => {
-        // children: [...await getData()].map(topic => {
-        const { path, title, content } = topic;
-        return {
-          path: path,
-          element: <Topic title={title} content={content} />,
-        }
-      })
-    },
-  ]
-);
+// const router = createBrowserRouter(
+//   [
+//     {
+//       path: '*',
+//       element: <ErrorPage />,
+//     },
+//     {
+//       path: '/',
+//       element: <Home />,
+//     },
+//     {
+//       path: '/topic',
+//       element: <App />,
+//       children: [...await getData()].map(topic => {
+//         // children: [...await getData()].map(topic => {
+//         const { path, title, content } = topic;
+//         return {
+//           path: path,
+//           element: <Topic title={title} content={content} />,
+//         }
+//       })
+//     },
+//   ]
+// );
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <ThemeContext>
-      <RouterProvider router={router}>
+      {/* <RouterProvider router={router}> */}
         <Home />
-      </RouterProvider>
+      {/* </RouterProvider> */}
     </ThemeContext>
   </React.StrictMode>,
 )

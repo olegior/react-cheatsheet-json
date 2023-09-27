@@ -1,18 +1,9 @@
-import { useEffect, useState } from "react";
+import { useContext } from "react";
+import { Context } from "./ThemeContext";
 import { Link } from "react-router-dom";
-import { getData } from "../utils/getData";
 
 const NavigationButtons = ({ title }) => {
-
-    const [data, setData] = useState([]);
-
-    useEffect(() => {
-        const asyncSetData = async () => {
-            setData(await getData());
-        }
-        asyncSetData()
-    }, [])
-
+    const {data} = useContext(Context);
     const topics = data.map(e => {
         const { title, path } = e;
         return { title, path };

@@ -1,18 +1,9 @@
 import { NavLink } from "react-router-dom";
-import { useContext, useState, useEffect } from 'react'
+import { useContext } from 'react'
 import { Context } from "./ThemeContext";
-import { getData } from "../utils/getData";
 
 const NavigationLinks = () => {
-    const { theme } = useContext(Context);
-    const [data, setData] = useState([]);
-
-    useEffect(() => {
-        const asyncSetData = async () => {
-            setData(await getData());
-        }
-        asyncSetData()
-    }, [])
+    const { theme, data } = useContext(Context);
 
     return (
         <nav className={`navigation ${theme}`}>
