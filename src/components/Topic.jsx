@@ -6,7 +6,7 @@ import 'prismjs/themes/prism-tomorrow.css';
 
 const Topic = ({ title, content = [] }) => {
     const { theme } = useContext(Context);
-    
+
     const parseContent = (content) => {
         return content.map(item => {
             const [[tag, text]] = Object.entries(item);
@@ -23,6 +23,7 @@ const Topic = ({ title, content = [] }) => {
 
     useEffect(() => {
         document.querySelector('h1').scrollIntoView(false);
+        document.querySelector('.active').scrollIntoView({ inline: "center", behavior: "smooth" });
         Prism.highlightAll();
     }, [title]);
 
